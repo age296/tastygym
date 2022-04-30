@@ -1,0 +1,50 @@
+<div class="grid-container">
+  <div>
+    <h1 *ngIf="apiResult &&apiResult.name != undefined">{{apiResult.name}}</h1>
+    <p *ngIf="apiResult &&apiResult.description != undefined" [outerHTML]="apiResult.description"></p>
+  </div>
+  <div>
+    <h2 *ngIf="apiResult &&apiResult.category.name != undefined">Category</h2>
+    <p *ngIf="apiResult &&apiResult.category.name != undefined">{{apiResult.category.name}}</p>
+  </div>
+</div>
+
+
+
+
+<h1 *ngIf="apiResult &&apiResult.name != undefined">{{apiResult.name}}</h1>
+<p *ngIf="apiResult &&apiResult.description != undefined" [outerHTML]="apiResult.description"></p>
+<h2 *ngIf="apiResult &&apiResult.category.name != undefined">Category</h2>
+<p *ngIf="apiResult &&apiResult.category.name != undefined">{{apiResult.category.name}}</p>
+<h2 *ngIf="apiResult &&apiResult.muscles != undefined">Muscles</h2>
+<div *ngIf="apiResult &&apiResult.muscles &&apiResult.muscles">
+  <ul *ngFor="let muscle of apiResult.muscles">
+    <li>{{muscle.name}}</li>
+  </ul>
+
+  <div class="bodyContainer"
+    style="background-image: url(https://wger.de/static/images/muscles/muscular_system_front.svg);">
+    <img *ngFor="let muscle of apiResult.muscles" src="https://wger.de{{muscle.image_url_main}}" alt="">
+  </div>
+</div>
+<br>
+<h2 *ngIf="apiResult &&apiResult.muscles_secondary != undefined">Muscles secundary</h2>
+<div *ngIf="apiResult &&apiResult.muscles &&apiResult.muscles">
+  <ul *ngFor="let muscle of apiResult.muscles">
+    <li>{{muscle.name}}</li>
+  </ul>
+
+  <div class="bodyContainer"
+    style="background-image: url(https://wger.de/static/images/muscles/muscular_system_back.svg);">
+    <img *ngFor="let muscle of apiResult.muscles_secondary" src="https://wger.de{{muscle.image_url_secondary}}" alt="">
+  </div>
+</div>
+<!-- <div *ngIf="apiResult &&apiResult.muscles_secondary &&apiResult.muscles_secondary">
+  <div *ngFor="let muscle of apiResult.muscles_secondary">
+    <p>{{muscle.name}}</p>
+  </div>
+</div>
+<div *ngIf="apiResult && apiResult.muscles_secondary" class="muscle-background mx-auto"
+  style="background-image: url(https://wger.de/static/images/muscles/muscular_system_back.svg);">
+  <img *ngFor="let muscle of apiResult.muscles_secondary" src="https://wger.de{{muscle.image_url_secondary}}" alt="">
+</div> -->

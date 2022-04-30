@@ -1,0 +1,32 @@
+<!--form class="example-form" style="display: flex; justify-content: center;" (submit)="submit()">
+  <mat-form-field class="example-full-width" style="border:0px; width: 60%;" >
+    <input matInput id="search" name="search" [(ngModel)]="search" placeholder="Do you want search a exercise?" >
+  </mat-form-field>
+  <button mat-raised-button color="primary" ><mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>Search
+  </button>
+</form> -->
+<form class="example-form" style="display: flex; justify-content: center;" (submit)="submit()">
+  <mat-form-field class="example-chip-list" style="width:80%">
+    <mat-label>Type of exercises</mat-label>
+    <mat-chip-list #chipList aria-label="exercise selection">
+      <mat-chip *ngFor="let exercise of exercises" (removed)="remove(exercise)">
+        {{exercise}}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input placeholder="Add exercise type..." #exerciseInput [formControl]="exerciseCtrl" [matAutocomplete]="auto"
+        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let exercise of filteredexercises | async" [value]="exercise">
+        {{exercise.name}}
+      </mat-option>
+    </mat-autocomplete>
+
+  </mat-form-field>
+  <button class="search" mat-raised-button color="primary">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>Search
+  </button>
+</form>

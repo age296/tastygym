@@ -1,0 +1,62 @@
+<!-- <mat-grid-list cols="4" rowHeight="1:1">
+  <mat-grid-tile><app-exercise [item]="currentItem"></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+  <mat-grid-tile><app-exercise></app-exercise></mat-grid-tile>
+</mat-grid-list> -->
+
+<!--<div class="demo-button-container">
+  <button mat-raised-button (click)="addData()" class="demo-button">
+    Add data
+  </button>
+  <button
+      mat-raised-button
+      [disabled]="!dataToDisplay.length"
+      (click)="removeData()"
+      class="demo-button">
+    Remove data
+  </button>
+</div>
+-->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position" style="width: fit-content; margin: 5px;">
+    <th mat-header-cell *matHeaderCellDef  style="padding-right:10px">No.</th>
+    <td mat-cell *matCellDef="let element"  style="padding-right:10px"><b>{{element.id}}</b></td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let element" [innerHTML]="element.description" ></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+      mat-row
+     
+      (click)="redirect(row)"
+      *matRowDef="let row; columns: displayedColumns;"
+  ></tr>
+</table>
+
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->

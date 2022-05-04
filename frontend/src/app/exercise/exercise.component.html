@@ -1,8 +1,20 @@
+<div class="grid-container" style="flex-direction: row-reverse; padding: 0; box-shadow: none; width: calc(80% + 6rem ); margin-bottom: 20px; ">
+  <div>
+    <button mat-raised-button color="primary">Add exercise</button>
+    <button mat-mini-fab aria-label="Example icon-button with a heart icon" style="margin-left:10px; background-color:#673ab7">
+      <mat-icon style="color: red;">favorite</mat-icon>
+    </button>
+  </div>
+ 
+</div>
+
+
 <div class="grid-container">
   <div>
-    <h1 *ngIf="apiResult &&apiResult.name != undefined">{{apiResult.name}}</h1>
+    <h2 *ngIf="apiResult &&apiResult.name != undefined">Name: {{apiResult.name}}</h2>
     <p *ngIf="apiResult &&apiResult.description != undefined" [outerHTML]="apiResult.description"></p>
   </div>
+
   <div>
     <h2 *ngIf="apiResult &&apiResult.category.name != undefined">Category</h2>
     <p *ngIf="apiResult &&apiResult.category.name != undefined">{{apiResult.category.name}}</p>
@@ -12,33 +24,33 @@
 
 
 
-<h1 *ngIf="apiResult &&apiResult.name != undefined">{{apiResult.name}}</h1>
-<p *ngIf="apiResult &&apiResult.description != undefined" [outerHTML]="apiResult.description"></p>
-<h2 *ngIf="apiResult &&apiResult.category.name != undefined">Category</h2>
-<p *ngIf="apiResult &&apiResult.category.name != undefined">{{apiResult.category.name}}</p>
-<h2 *ngIf="apiResult &&apiResult.muscles != undefined">Muscles</h2>
-<div *ngIf="apiResult &&apiResult.muscles &&apiResult.muscles">
-  <ul *ngFor="let muscle of apiResult.muscles">
-    <li>{{muscle.name}}</li>
-  </ul>
 
-  <div class="bodyContainer"
+<div class="grid-container images">
+<div *ngIf="apiResult &&apiResult.muscles &&apiResult.muscles">
+  <h2 *ngIf="apiResult &&apiResult.muscles != undefined">Muscles</h2>
+  <div class="bodyContainer image"
     style="background-image: url(https://wger.de/static/images/muscles/muscular_system_front.svg);">
     <img *ngFor="let muscle of apiResult.muscles" src="https://wger.de{{muscle.image_url_main}}" alt="">
   </div>
+  <ol>
+    <li *ngFor="let muscle of apiResult.muscles">{{muscle.name}}</li>
+  </ol>
 </div>
-<br>
-<h2 *ngIf="apiResult &&apiResult.muscles_secondary != undefined">Muscles secundary</h2>
-<div *ngIf="apiResult &&apiResult.muscles &&apiResult.muscles">
-  <ul *ngFor="let muscle of apiResult.muscles">
-    <li>{{muscle.name}}</li>
-  </ul>
 
-  <div class="bodyContainer"
+<div *ngIf="apiResult &&apiResult.muscles &&apiResult.muscles">
+  <h2 *ngIf="apiResult &&apiResult.muscles_secondary != undefined">Muscles secundary</h2>
+  <div class="bodyContainer image"
     style="background-image: url(https://wger.de/static/images/muscles/muscular_system_back.svg);">
     <img *ngFor="let muscle of apiResult.muscles_secondary" src="https://wger.de{{muscle.image_url_secondary}}" alt="">
   </div>
+
+  <ol >
+    <li *ngFor="let muscle of apiResult.muscles">{{muscle.name}}</li>
+  </ol>
 </div>
+</div>
+
+
 <!-- <div *ngIf="apiResult &&apiResult.muscles_secondary &&apiResult.muscles_secondary">
   <div *ngFor="let muscle of apiResult.muscles_secondary">
     <p>{{muscle.name}}</p>

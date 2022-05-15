@@ -21,16 +21,20 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'
+import { EventsMarcaWebscrapingComponent } from './events-marca-webscraping/events-marca-webscraping.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [							
+  declarations: [									
       AppComponent,
       ExerciseComponent,
       ExerciseListComponent,
       ToolbarComponent,
       ExerciseComponent,
       SearchBarComponent,
-      ExerciseMenuComponent
+      ExerciseMenuComponent,
+      EventsMarcaWebscrapingComponent,
+      LoginComponent
    ],
   imports: [
     MatButtonModule,

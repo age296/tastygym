@@ -1,0 +1,33 @@
+<div class="schedule">
+  <ol class="auto-items daylist">
+    <li *ngFor="let day of MarcaResults" class="content-item">
+      <span class="title-section-widget" [innerHTML]="day.date" ></span>
+      <ol>
+        <li class="dailyevent" *ngFor="let event  of day.data">
+          <div class="dailytime">
+            <span *ngIf="event.type =='Fútbol'" class="dailyday"><mat-icon aria-hidden="false" aria-label>sports_soccer</mat-icon>{{event.type}}</span>
+            <span *ngIf="event.type =='F. Sala'" class="dailyday"><mat-icon aria-hidden="false" aria-label>sports_soccer</mat-icon>{{event.type}}</span>
+            <span *ngIf="event.type =='Balonmano'" class="dailyday"><mat-icon aria-hidden="false" aria-label>sports_soccer</mat-icon>{{event.type}}</span>
+            <span *ngIf="event.type =='Boxeo'" class="dailyday"><mat-icon aria-hidden="false" aria-label>sports_mma</mat-icon>{{event.type}}</span>
+            <span *ngIf="event.type =='Ciclismo'" class="dailyday"><mat-icon aria-hidden="false" aria-label>directions_bike</mat-icon>{{event.type}}</span>
+            <span *ngIf="event.type == 'NBA'" class="dailyday"><mat-icon aria-hidden="false" aria-label>sports_basketball</mat-icon>{{event.type}}</span>
+            <span *ngIf="event.type == 'Baloncesto'" class="dailyday"><mat-icon aria-hidden="false" aria-label>sports_basketball</mat-icon>{{event.type}}</span>
+            <span class="dailycompetition">{{event.competition}}</span>
+            <strong class="dailyhour">{{event.hour}}</strong>
+          </div>
+
+          <div class="dailytime">
+            
+            <h4 class="dailyteams">
+              <p href="" title={{event.name}}>{{event.name}}</p>
+            </h4>
+            <span class="dailychannel"><i class="icon-pantalla"></i>{{event.platform}}</span>
+          </div>
+
+        </li>
+
+      </ol>
+    </li>
+  </ol>
+</div>
+        

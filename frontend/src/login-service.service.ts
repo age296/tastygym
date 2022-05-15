@@ -1,12 +1,18 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginServiceService implements CanActivate {
-  constructor(private http: HttpClient) { }
+@Injectable()
+export class LoginServiceService implements CanLoad, CanActivate {
+  constructor(
+    private http: HttpClient,
+    private route : Router) { }
+  
+    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    return false;
+  }
+  
   url = "http://localhost:8080/auth/user"
   token: string | undefined;
   httpOptions = {
@@ -17,9 +23,20 @@ export class LoginServiceService implements CanActivate {
     })
   };
 
+ 
+
+  canLoad(_route: Route): boolean {
+    
+    //determine whether you want to load the module
+    //return true or false
+    console.log("xdd")
+    return true; 
+  }
   canActivate() {
     //this.router.navigate(['test']);
-    return this.token ? true : false;
+    //this.route.navigate(['error']);
+    return this.token == undefined ? false : true;
+    return false;
   }
 
   login(username: string, pwd: string){
@@ -27,7 +44,11 @@ export class LoginServiceService implements CanActivate {
 
 
     this.http.post<any>(this.url, body, this.httpOptions)
-      .subscribe(data  => this.token = data["token"])
+      .subscribe(data  => {
+        this.token = data["token"]
+        return false;
+      }
+    )
   }
 
 }

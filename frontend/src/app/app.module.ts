@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExerciseComponent } from './exercise/exercise.component';
@@ -23,9 +22,13 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete'
 import { EventsMarcaWebscrapingComponent } from './events-marca-webscraping/events-marca-webscraping.component';
 import { LoginComponent } from './login/login.component';
+import { AppLoggedRoutes } from './app-logged.routing';
+import { LoginServiceService } from 'src/login-service.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [									
+  declarations: [												
       AppComponent,
       ExerciseComponent,
       ExerciseListComponent,
@@ -34,7 +37,9 @@ import { LoginComponent } from './login/login.component';
       SearchBarComponent,
       ExerciseMenuComponent,
       EventsMarcaWebscrapingComponent,
-      LoginComponent
+      LoginComponent,
+      DashboardComponent,
+      PageNotFoundComponent
    ],
   imports: [
     MatButtonModule,
@@ -48,14 +53,13 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatTableModule,
-    AppRoutingModule,
     FormsModule,
     MatInputModule,
     MatChipsModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
-  providers: [],
+  providers: [LoginServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

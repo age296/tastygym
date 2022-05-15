@@ -15,13 +15,29 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    if(this.login.token){
+      console.log("You are alredy logged")
+    }
   }
 
-  onClick(username: string ){
-    console.log("hi")
-    this.login.login("xd", "xd")
-    
-    this.router.navigate(['/test'])
+  onClick(){  
+    let susccess = false;
+    let username = document.getElementById("username");
+    let password = document.getElementById("pwd");
+    if(username && password){
+      this.login.login(username.innerText, password.innerText)
+      /*
+      this.spinnerService.getSpinnerObserver().subscribe((status) => {
+      this.showSpinner = (status === 'start');
+      this.cdRef.detectChanges();
+    });*/ 
+
+
+    }
+    if(susccess){
+      this.router.navigate(['dashboard'])
+    }
+    console.log(username?.textContent)
   }
 
 }

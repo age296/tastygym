@@ -10,13 +10,13 @@ import { ApiExercises, ApiExercisesCategory, ApiExercisesDetails, ExerciseCatego
 })
 export class WgerServiceApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient
+    ) { }
   wgerurl = "https://wger.de/api/v2/"
   language = 2;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Token 8edcb8a40a895691f31008aa0916aa8e666d5670',
       'Accept': '*/*',
     })
   };

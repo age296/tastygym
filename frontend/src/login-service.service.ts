@@ -36,19 +36,11 @@ export class LoginServiceService implements CanLoad, CanActivate {
     //this.router.navigate(['test']);
     //this.route.navigate(['error']);
     return this.token == undefined ? false : true;
-    return false;
   }
 
   login(username: string, pwd: string){
     let body = `user=${username}&password=${pwd}`;
-
-
-    this.http.post<any>(this.url, body, this.httpOptions)
-      .subscribe(data  => {
-        this.token = data["token"]
-        return false;
-      }
-    )
+    return this.http.post<any>(this.url, body, this.httpOptions);
   }
 
 }

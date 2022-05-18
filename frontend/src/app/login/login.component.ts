@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginServiceService } from 'src/login-service.service';
+import { DialogData, DialogDataDialog } from '../dialog-view/dialog-view.component';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,9 @@ import { LoginServiceService } from 'src/login-service.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  username: string = "";
+  password: string = "";
 
   constructor(
     private login: LoginServiceService,
@@ -17,15 +21,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(this.login.token){
       console.log("You are alredy logged")
+      this.router.navigate(['dashboard/exercises']);
     }
   }
 
   onClick(){  
-    let susccess = false;
-    let username = document.getElementById("username");
-    let password = document.getElementById("pwd");
-    if(username && password){
-      this.login.login(username.innerText, password.innerText)
+    
+    console.log(this.username)
+    if(this.username!="" && this.password!=""){
+      this.login.login(this.username,this.username).subscribe(data  => {
+        this.login.token = data["token"]
+        console.log(data["token"])
+        if(!this.login.token) alert("Failed to login")
+        this.router.navigate(['dashboard/exercises']);
+
+      }
+    )
+  }
       /*
       this.spinnerService.getSpinnerObserver().subscribe((status) => {
       this.showSpinner = (status === 'start');
@@ -33,11 +45,7 @@ export class LoginComponent implements OnInit {
     });*/ 
 
 
-    }
-    if(susccess){
-      this.router.navigate(['dashboard'])
-    }
-    console.log(username?.textContent)
+    
   }
 
 }

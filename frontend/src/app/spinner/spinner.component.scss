@@ -1,0 +1,73 @@
+@keyframes bouncing {
+  0% {
+    top: 40%;
+  }
+  100% {
+    top: 30%;
+  }
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+.loading-container {
+  display: flex;
+  z-index: 999;
+  justify-content: center;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  
+}
+mat-progress-spinner{
+  margin: auto;
+}
+.site-container {
+  font-size: 14px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100vh;
+  background: #f1f1f1;
+  overflow: hidden;
+
+  .site-header {
+    height: 64px;
+  }
+
+  .site-content {
+    height: calc(100vh - 65px);
+    padding: 0 15px;
+    overflow: auto;
+  }
+
+}
+
+.papaya {
+  z-index: 999999999;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  z-index: 100;
+  background-image: url(../../assets/cute-papaya-character-with-hypnotized-eyes-free-vector-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  animation: spin 1s  infinite;
+}

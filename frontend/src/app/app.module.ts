@@ -11,7 +11,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import {MatTableModule} from '@angular/material/table';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { ExerciseMenuComponent } from './exercise-menu/exercise-menu.component';
@@ -26,9 +26,16 @@ import { AppLoggedRoutes } from './app-logged.routing';
 import { LoginServiceService } from 'src/login-service.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { CustomHttpInterceptor } from 'src/CustomHttpInterceptor';
+import { RegisterComponent } from './register/register.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
+import { DialogData, DialogDataDialog } from './dialog-view/dialog-view.component';
 
 @NgModule({
-  declarations: [												
+  declarations: [																
       AppComponent,
       ExerciseComponent,
       ExerciseListComponent,
@@ -39,7 +46,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       EventsMarcaWebscrapingComponent,
       LoginComponent,
       DashboardComponent,
-      PageNotFoundComponent
+      PageNotFoundComponent,
+      SpinnerComponent,
+      RegisterComponent,
+      DialogData,
+      DialogDataDialog
    ],
   imports: [
     MatButtonModule,
@@ -58,8 +69,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatChipsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
   ],
-  providers: [LoginServiceService],
+  providers: [LoginServiceService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: CustomHttpInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -41,6 +41,6 @@ export class ExerciseListComponent implements OnInit {
     );
   }
   redirect(row: any): void {
-    this.router.navigate(['/exercise/', row.id]);
+    this.router.navigate(['/dashboard/exercise/', row.id]);
   }
 }

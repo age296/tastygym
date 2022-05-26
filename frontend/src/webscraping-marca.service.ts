@@ -19,7 +19,7 @@ export class WebscrapingMarcaService {
       'Content-Type': 'application/json',
       'Accept': '*/*',
       'Access-Control-Allow-Origin': '*',
-      'Authorization': this.login.token ? this.login.token : "",
+      'Authorization': this.login.token && this.login.token!="" ? this.login.token : "",
 
     })
   };

@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
     console.log(this.username)
     if(this.username!="" && this.password!=""){
       this.login.login(this.username,this.username).subscribe(data  => {
-        this.login.token = data["token"]
+        this.login.token = data["token"];
+        this.login.username = this.username;
         console.log(data["token"])
         if(!this.login.token) alert("Failed to login")
         this.router.navigate(['dashboard/exercises']);

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.demo.dto.Exercises;
 import com.example.demo.dto.User;
 import com.example.demo.repository.UserRepository;
 
@@ -13,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import net.minidev.json.JSONObject;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -32,30 +36,46 @@ public class UserController {
 
 	@PostMapping("user")
 	@CrossOrigin(origins = "*")
-	public User login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+	public JSONObject login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
+		JSONObject entity = new JSONObject();
 		User user = userRepository.findUserByUserName(username);
-		if(user  == null) return new User();
+		if(user  == null) {
+			entity.put("token", "");
+			return entity;
+		}
 		String token = getJWTToken(username);
 		user.setToken(token);
 		userRepository.save(user);
-		return user;
+		
+		entity.put("token", token);
+		return entity;
+	}
 
+	@PostMapping("exercises")
+	public List<Exercises> exercies(@RequestHeader("Authorization") String token){
+		return userRepository.findUserByToken(token).getExercises();
 	}
 
 	@PostMapping("register")
 	@CrossOrigin(origins = "*")
 	public ResponseEntity<?> register(@RequestParam("user") String username, @RequestParam("password") String pwd) {
 
+	
+        
+        JSONObject entity = new JSONObject();
+        
+         
 		// add check for username exists in a DB
 		if (userRepository.existsByUserName(username)) {
-			return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
+			entity.put("status", false);
+			return new ResponseEntity<>(entity, HttpStatus.BAD_REQUEST);
 		}
 
 		// create user object
 		User user = new User(username, pwd, getJWTToken(username));
 		userRepository.save(user);
-
-		return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+		entity.put("status", true);
+		return new ResponseEntity<>(entity, HttpStatus.OK);
 
 	}
 

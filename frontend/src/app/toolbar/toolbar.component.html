@@ -7,10 +7,12 @@
       <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
       </button>-->
+      <span>Hello {{username}}!</span>
+      <span class="example-spacer"></span>
       <span routerLink="/dashboard/exercises">Exercices</span>
       <span routerLink="/dashboard">Like</span>
       <span routerLink="/dashboard/events">Events</span>
-      <span routerLink="/">History</span>
+      <span (click)="logout()" >Logout</span>
     </mat-toolbar-row>
 
     <!-- <mat-toolbar-row>

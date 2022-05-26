@@ -15,6 +15,7 @@ export class LoginServiceService implements CanLoad, CanActivate {
   
   url = "http://localhost:8080/auth/user"
   token: string | undefined;
+  username: string = "";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -26,16 +27,10 @@ export class LoginServiceService implements CanLoad, CanActivate {
  
 
   canLoad(_route: Route): boolean {
-    
-    //determine whether you want to load the module
-    //return true or false
-    console.log("xdd")
-    return true; 
+    return this.token == undefined && this.token != "" ? false : true;
   }
   canActivate() {
-    //this.router.navigate(['test']);
-    //this.route.navigate(['error']);
-    return this.token == undefined ? false : true;
+    return this.token == undefined && this.token != "" ? false : true;
   }
 
   login(username: string, pwd: string){

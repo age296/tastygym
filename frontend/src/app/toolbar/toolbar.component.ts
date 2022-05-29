@@ -22,6 +22,6 @@ export class ToolbarComponent implements OnInit {
     this.login.username = "";
     this.login.token = "";
     alert("Goodbye, see you soon!");
-    this.route.navigate(['/'])
-  }
+    window.location.reload();
+    }
 }

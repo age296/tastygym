@@ -36,12 +36,12 @@ export class WgerServiceApiService {
   }
 
   moreInfoExercise(id: number): Observable<ApiExercisesDetails> {
-    let endpoint = this.wgerurl + "/exerciseinfo/" + id;
+    let endpoint = this.wgerurl + "exerciseinfo/" + id;
     return this.http.get<ApiExercisesDetails>(endpoint, this.httpOptions)
   }
 
   exercisesCategory(): Observable<ApiExercisesCategory> {
-    let endpoint = this.wgerurl + "/exercisecategory/";
+    let endpoint = this.wgerurl + "exercisecategory/";
     return this.http.get<ApiExercisesCategory>(endpoint, this.httpOptions)
   }
 }

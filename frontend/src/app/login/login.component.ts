@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    if(this.login.token){
+    if(this.login.token  || this.login.token != ""){
       console.log("You are alredy logged")
       this.router.navigate(['dashboard/exercises']);
     }
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.login.token = data["token"];
         this.login.username = this.username;
         console.log(data["token"])
-        if(!this.login.token) alert("Failed to login")
+        if(!this.login.token || this.login.token == "") alert("Failed to login")
         this.router.navigate(['dashboard/exercises']);
 
       }

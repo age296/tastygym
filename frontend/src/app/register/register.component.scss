@@ -3,7 +3,7 @@ body {
 	margin: 0;
 	padding: 0;
     box-sizing: border-box;    
-	min-height: 100vh;
+	min-height: 100%;
 	font-family: 'Roboto', sans-serif;
     
 }
@@ -16,7 +16,7 @@ img{
 	height: auto;
     display: flex;
     justify-content: center;
-    height: 100vh;
+	margin-bottom: 10px;
 }
 
 .positronx {
@@ -26,7 +26,7 @@ img{
 
 .box {
     margin-top: 2%;
-
+	margin-bottom: 2%;
 	position: relative;
     height: fit-content;
 	top: 0;

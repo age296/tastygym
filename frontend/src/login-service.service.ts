@@ -27,10 +27,10 @@ export class LoginServiceService implements CanLoad, CanActivate {
  
 
   canLoad(_route: Route): boolean {
-    return this.token == undefined && this.token != "" ? false : true;
+    return this.token == undefined || this.token == "" ? false : true;
   }
   canActivate() {
-    return this.token == undefined && this.token != "" ? false : true;
+    return this.token == undefined ||  this.token == "" ? false : true;
   }
 
   login(username: string, pwd: string){

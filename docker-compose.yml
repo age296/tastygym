@@ -3,7 +3,7 @@ version: "3.7"
 
 
 services:
-  postgres:
+  database:
     image: postgres:latest
     restart: always
     ports:

@@ -33,9 +33,10 @@ import { RegisterComponent } from './register/register.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { DialogData, DialogDataDialog } from './dialog-view/dialog-view.component';
+import { LikeListComponent } from './like-list/like-list.component';
 
 @NgModule({
-  declarations: [																
+  declarations: [																	
       AppComponent,
       ExerciseComponent,
       ExerciseListComponent,
@@ -50,7 +51,8 @@ import { DialogData, DialogDataDialog } from './dialog-view/dialog-view.componen
       SpinnerComponent,
       RegisterComponent,
       DialogData,
-      DialogDataDialog
+      DialogDataDialog,
+      LikeListComponent
    ],
   imports: [
     MatButtonModule,

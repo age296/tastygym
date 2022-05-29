@@ -39,6 +39,7 @@ public class UserController {
 	public JSONObject login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
 		JSONObject entity = new JSONObject();
 		User user = userRepository.findUserByUserName(username);
+		System.out.println("Leeee");
 		if(user  == null) {
 			entity.put("token", "");
 			return entity;
